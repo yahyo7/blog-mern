@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -7,8 +6,8 @@ import Dashboard from './pages/Dashboard'
 import SignIn from './pages/Signin'
 import SignUp from './pages/Signup'
 import Header from './components/Header'
+import FooterComponent from './components/Footer'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>
@@ -22,6 +21,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
 
       </Routes>
+      <FooterComponent/>
     </BrowserRouter>
   )
 }
