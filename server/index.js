@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 // Load environment variables
 dotenv.config();
@@ -18,6 +19,7 @@ const app = express();
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(cookieParser());
 
 // Register routes
 app.use('/api/user', userRouter);

@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import bcrypt from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
 import { errorHandler } from "../utils/error.js";
 import jwt from 'jsonwebtoken';
 
@@ -17,7 +17,7 @@ export const Signup = async (req, res, next) => {
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcryptjs.hash(password, 10);
         const newUser = new User({ username, email, password: hashedPassword });
 
         await newUser.save();
@@ -40,7 +40,7 @@ export const Signin = async (req, res, next) => {
             return next(errorHandler(404, 'User not found'));
         }
 
-        const validPassword = await bcrypt.compare(password, validUser.password);
+        const validPassword = await bcryptjsjs.compare(password, validUser.password);
         if (!validPassword) {
             return next(errorHandler(400, 'Invalid password'));
         }
@@ -66,7 +66,7 @@ export const GoogleAuth = async (req, res, next) => {
             res.status(200).cookie('access_token', token, {httpOnly: true}).json(userWithoutPassword);
         } else {
             const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
-            const hashedPassword = await bcrypt.hash(generatedPassword, 10);
+            const hashedPassword = await bcryptjs.hash(generatedPassword, 10);
             const newUser = new User({username: name.split(' ').join('').toLowerCase() + Math.random().toString(36).slice(-4),
                 email, password: hashedPassword, profilePicture: googlePhotoUrl});
                 
