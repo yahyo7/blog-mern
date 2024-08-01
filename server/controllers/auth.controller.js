@@ -40,7 +40,7 @@ export const Signin = async (req, res, next) => {
             return next(errorHandler(404, 'User not found'));
         }
 
-        const validPassword = await bcryptjsjs.compare(password, validUser.password);
+        const validPassword = await bcryptjs.compare(password, validUser.password);
         if (!validPassword) {
             return next(errorHandler(400, 'Invalid password'));
         }
