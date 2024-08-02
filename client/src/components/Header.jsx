@@ -1,6 +1,6 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
@@ -9,6 +9,7 @@ import { signOutSuccess } from "../redux/user/userSlice";
 const Header = () => {
   const path = useLocation().pathname;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { theme } = useSelector((state) => state.theme);
 
@@ -24,6 +25,8 @@ const Header = () => {
         console.log(data.message);
       } else {
         dispatch(signOutSuccess());
+        navigate("/sign-in");
+
       }
     } catch (error) {
       console.log(error.message);
