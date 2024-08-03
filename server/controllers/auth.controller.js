@@ -61,7 +61,7 @@ export const GoogleAuth = async (req, res, next) => {
     try {
         const user = await User.findOne({ email });
         if (user) {
-            const token = jwt.sign({id: user._id, isAdmin: user.isAdmin}, process.env.JWT_SECRET || 'default_secret_key', {expiresIn: '5h'});
+            const token = jwt.sign({id: user._id, isAdmin: user.isAdmin}, process.env.JWT_SECRET || 'default_secret_key', {expiresIn: '1d'});
             const userWithoutPassword = excludePassword(user);
             res.status(200).cookie('access_token', token, {httpOnly: true}).json(userWithoutPassword);
         } else {

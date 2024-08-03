@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutSuccess } from "../redux/user/userSlice";
+import { HiOutlineUserGroup } from "react-icons/hi2";
 
 export const DashSidebar = () => {
   const location = useLocation();
@@ -64,6 +65,16 @@ export const DashSidebar = () => {
             className="cursor-pointer"
             >
               Posts
+            </Sidebar.Item>
+          )}
+          {currentUser.isAdmin && (
+            <Sidebar.Item
+            active={tab === "users"}
+            icon={HiOutlineUserGroup}
+            onClick={() => handleNavigation("/dashboard?tab=users")}
+            className="cursor-pointer"
+            >
+              Users
             </Sidebar.Item>
           )}
           <Sidebar.Item
