@@ -117,7 +117,7 @@ function DashUsers() {
                       {user.username}  
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell className="text-center">{user.isAdmin ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500"/>}</TableCell>
+                  <TableCell className="flex justify-center mt-3">{user.isAdmin ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500"/>}</TableCell>
                   <TableCell>
                     <span onClick={()=> {
                       setShowModal(true)
