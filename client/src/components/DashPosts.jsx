@@ -13,7 +13,7 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/get-posts?userId=${currentUser._id}`);
+        const res = await fetch(`/api/post/get-posts`);
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
