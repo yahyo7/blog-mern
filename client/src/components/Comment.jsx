@@ -4,7 +4,7 @@ import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Button, Textarea } from "flowbite-react";
 
-const Comment = ({ comment, onLike, onEdit }) => {
+const Comment = ({ comment, onLike, onEdit, onDelete }) => {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedComment, setEditedComment] = useState(comment.content);
@@ -32,21 +32,21 @@ const Comment = ({ comment, onLike, onEdit }) => {
 
   const handleSave = async () => {
     try {
-        const res  = await fetch(`/api/comment/edit-comment/${comment._id}`,{
-            method:"PUT",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({content:editedComment})
-        })
-        if(res.ok){
-            setIsEditing(false);
-            onEdit(comment,editedComment)
-        }
+      const res = await fetch(`/api/comment/edit-comment/${comment._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content: editedComment }),
+      });
+      if (res.ok) {
+        setIsEditing(false);
+        onEdit(comment, editedComment);
+      }
     } catch (error) {
-       console.log(error.message); 
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className="flex p-4 border-b dark:border-gray-600 text-sm">
@@ -76,10 +76,18 @@ const Comment = ({ comment, onLike, onEdit }) => {
               className="mb-2 "
             />
             <div className="flex justify-end gap-2 text-xs">
-                <Button type="button" size='sm' color='info' onClick={handleSave}>Save</Button>
-                <Button type="button" size='sm' color='gray' onClick={()=>setIsEditing(false)} >Cancel</Button>
+              <Button type="button" size="sm" color="info" onClick={handleSave}>
+                Save
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                color="gray"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </Button>
             </div>
-
           </>
         ) : (
           <>
@@ -106,13 +114,22 @@ const Comment = ({ comment, onLike, onEdit }) => {
 
               {currentUser &&
                 (currentUser.isAdmin || currentUser._id === comment.userId) && (
-                  <button
-                    onClick={handleEditComment}
-                    type="button"
-                    className="text-gray-400 hover:text-blue-500"
-                  >
-                    Edit
-                  </button>
+                  <>
+                    <button
+                      onClick={handleEditComment}
+                      type="button"
+                      className="text-gray-400 hover:text-blue-500"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={()=> onDelete(comment._id)}
+                      type="button"
+                      className="text-gray-400 hover:text-red-500"
+                    >
+                      Delete
+                    </button>
+                  </>
                 )}
             </div>
           </>
