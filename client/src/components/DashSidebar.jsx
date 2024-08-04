@@ -1,10 +1,16 @@
 import { Sidebar } from "flowbite-react";
-import { HiOutlineAnnotation, HiArrowSmRight, HiDocumentText, HiUser } from "react-icons/hi";
+import {
+  HiOutlineAnnotation,
+  HiArrowSmRight,
+  HiDocumentText,
+  HiUser,
+  HiOutlineUserGroup,
+} from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutSuccess } from "../redux/user/userSlice";
-import { HiOutlineUserGroup } from "react-icons/hi2";
+import { TbLayoutDashboard } from "react-icons/tb";
 
 export const DashSidebar = () => {
   const location = useLocation();
@@ -57,36 +63,44 @@ export const DashSidebar = () => {
           >
             Profile
           </Sidebar.Item>
-          
+
           {currentUser.isAdmin && (
             <>
-            <Sidebar.Item
-            active={tab === "posts"}
-            icon={HiDocumentText}
-            onClick={() => handleNavigation("/dashboard?tab=posts")}
-            className="cursor-pointer"
-            >
-              Posts
-            </Sidebar.Item>
-            <Sidebar.Item
-            active={tab === "users"}
-            icon={HiOutlineUserGroup}
-            onClick={() => handleNavigation("/dashboard?tab=users")}
-            className="cursor-pointer"
-            >
-              Users
-            </Sidebar.Item>
-            <Sidebar.Item
-            active={tab === "comments"}
-            icon={HiOutlineAnnotation}
-            onClick={() => handleNavigation("/dashboard?tab=comments")}
-            className="cursor-pointer"
-            >
-              Comments
-            </Sidebar.Item>
+              <Sidebar.Item
+                active={tab === "dash" || !tab}
+                icon={TbLayoutDashboard}
+                onClick={() => handleNavigation("/dashboard?tab=dash")}
+                className="cursor-pointer"
+              >
+                Dashboard
+              </Sidebar.Item>
+              <Sidebar.Item
+                active={tab === "posts"}
+                icon={HiDocumentText}
+                onClick={() => handleNavigation("/dashboard?tab=posts")}
+                className="cursor-pointer"
+              >
+                Posts
+              </Sidebar.Item>
+              <Sidebar.Item
+                active={tab === "users"}
+                icon={HiOutlineUserGroup}
+                onClick={() => handleNavigation("/dashboard?tab=users")}
+                className="cursor-pointer"
+              >
+                Users
+              </Sidebar.Item>
+              <Sidebar.Item
+                active={tab === "comments"}
+                icon={HiOutlineAnnotation}
+                onClick={() => handleNavigation("/dashboard?tab=comments")}
+                className="cursor-pointer"
+              >
+                Comments
+              </Sidebar.Item>
             </>
           )}
-          
+
           <Sidebar.Item
             icon={HiArrowSmRight}
             className="cursor-pointer"
