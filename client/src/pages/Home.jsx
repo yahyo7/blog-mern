@@ -34,12 +34,9 @@ const Home = () => {
         >
           View all posts
         </Link>
-        
       </div>
 
-      
-
-      <div className="p-6 mx-[25px] sm:p-8 bg-amber-100 dark:bg-slate-700">
+      <div className="p-6 max-w-5xl mx-auto sm:p-8 bg-amber-100 dark:bg-slate-700">
         <CallToAction />
       </div>
 
