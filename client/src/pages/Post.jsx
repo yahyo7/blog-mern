@@ -65,7 +65,7 @@ const Post = () => {
             <CallToAction/>
         </div>
 
-        <CommentSection postId={post._id}/>
+        <CommentSection postId={post?._id}/>
     </main>
   )
 }
