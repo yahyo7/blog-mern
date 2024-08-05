@@ -13,6 +13,7 @@ import { CreatePost } from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import Post from "./pages/Post";
 import ScrollToTop from "./components/ScrollToTop";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/search" element={<Search />} />
         <Route element={<PrivateRoute/>}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
