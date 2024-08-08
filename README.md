@@ -1,8 +1,11 @@
+![Seven's Blog](./dash.png)
 
 
 # MERN Stack Blog Website
 
-Welcome to the MERN Stack Blog Website repository! This project showcases a blog application built using the MERN stack, combining MongoDB, Express.js, React, and Node.js, along with additional technologies for an enhanced user experience.
+Welcome to the MERN Stack Blog Website repository! This project showcases a blog application built using the MERN stack, combining MongoDB, Express.js, React, and Node.js, along with additional technologies for an enhanced user experience.</br>
+<a href="https://blog-mern-04no.onrender.com/" >Visit the Live MERN Stack Blog Website</a>
+
 
 ## Project Overview
 
