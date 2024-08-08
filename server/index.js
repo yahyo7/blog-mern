@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 
 import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
+import path from "path";
 
 // Load environment variables
 dotenv.config();
@@ -21,6 +22,10 @@ mongoose
     console.error("Error connecting to MongoDB:", err);
   });
 
+const __dirname = path.resolve();
+
+// Create Express app
+
 const app = express();
 
 // Middleware to parse JSON
@@ -31,7 +36,7 @@ app.use(cookieParser());
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoute);
-app.use('/api/comment', commentRoute)
+app.use("/api/comment", commentRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.status || 500;
@@ -41,6 +46,12 @@ app.use((err, req, res, next) => {
     message,
     statusCode,
   });
+});
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 // Start the server
